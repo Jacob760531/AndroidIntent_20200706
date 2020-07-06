@@ -36,17 +36,27 @@ class MainActivity : AppCompatActivity() {
 
 
         smsBtn.setOnClickListener {
-
             val inputPhone = phoneNumEdt.text.toString()
-
             val inputContent = smsContentEdt.text.toString()
-
             val myUri = Uri.parse("smsto:${inputPhone}")
             val myIntent = Intent(Intent.ACTION_SENDTO,myUri)
-
 //            입력한 내용을 putExtra로 들고가자
             myIntent.putExtra("sms_body",inputContent)
+            startActivity(myIntent)
+        }
 
+        naverWebLinkBtn.setOnClickListener {
+
+            val myUri = Uri.parse("https://naver.com")
+            val myIntent = Intent(Intent.ACTION_VIEW,myUri)
+            startActivity(myIntent)
+
+        }
+
+        kakaoPlayStoreBtn.setOnClickListener {
+
+            val myUri = Uri.parse("market://details?id=com.kakao.talk&hl=ko")
+            val myIntent = Intent(Intent.ACTION_VIEW,myUri)
             startActivity(myIntent)
 
         }
