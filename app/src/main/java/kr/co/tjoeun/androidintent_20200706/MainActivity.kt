@@ -13,12 +13,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         dialBtn.setOnClickListener {
-
 //            입력한 폰번 받아오기
             val inputPhoneNum = phoneNumEdt.text.toString()
 
 //            어디로 전화를 걸지 정보 저장 변수 => Url
-
             val myUri = Uri.parse("tel:${inputPhoneNum}")
 
 //            실제 전화 화면으로 이동시켜줄 Intent
@@ -30,10 +28,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         callBtn.setOnClickListener {
-
             val inputPhone = phoneNumEdt.text.toString()
             val myUri = Uri.parse("tel:${inputPhone}")
             val myIntent = Intent(Intent.ACTION_CALL,myUri)
+            startActivity(myIntent)
+        }
+
+
+        smsBtn.setOnClickListener {
+
+            val inputPhone = phoneNumEdt.text.toString()
+
+            val inputContent = smsContentEdt.text.toString()
+
+            val myUri = Uri.parse("smsto:${inputPhone}")
+            val myIntent = Intent(Intent.ACTION_SENDTO,myUri)
+
+//            입력한 내용을 putExtra로 들고가자
+            myIntent.putExtra("sms_body",inputContent)
+
             startActivity(myIntent)
 
         }
